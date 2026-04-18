@@ -9,8 +9,8 @@ const Home = () => {
       <aside style={{ width: '280px', backgroundColor: '#121212', margin: '8px', borderRadius: '8px', padding: '20px' }}>
         <h2 style={{ fontSize: '1.2rem', marginBottom: '20px' }}>Your Library</h2>
         <div style={{ color: '#b3b3b3', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <span> Home</span>
-          <span> Search</span>
+          <span>Home</span>
+          <span>Search</span>
         </div>
       </aside>
 
