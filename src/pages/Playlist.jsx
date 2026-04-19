@@ -1,75 +1,65 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Playlist = () => {
+function Playlist() {
   const [playlist, setPlaylist] = useState([]);
   const [search, setSearch] = useState("");
 
-  // Load from localStorage
   useEffect(() => {
     const data = localStorage.getItem("spotify_playlist");
-    if (data) {
-      setPlaylist(JSON.parse(data));
-    }
+    if (data) setPlaylist(JSON.parse(data));
   }, []);
 
-  // Save to localStorage
-  useEffect(() => {
-    localStorage.setItem("spotify_playlist", JSON.stringify(playlist));
-  }, [playlist]);
-
-  // Remove song
   const removeSong = (id) => {
-    const updated = playlist.filter((song) => song.id !== id);
+    const updated = playlist.filter((s) => s.id !== id);
     setPlaylist(updated);
+    localStorage.setItem("spotify_playlist", JSON.stringify(updated));
   };
 
-  // Simple search filter
-  const filteredSongs = playlist.filter((song) => {
-    return (
-      (song.title || "").toLowerCase().includes(search.toLowerCase()) ||
-      (song.artist || "").toLowerCase().includes(search.toLowerCase())
-    );
-  });
+  const filtered = playlist.filter(
+    (s) =>
+      s.title.toLowerCase().includes(search.toLowerCase()) ||
+      s.artist.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div style={{ padding: "20px", color: "white" }}>
-      <h1>My Playlist</h1>
+    <div className="app">
+      <div className="main">
+        {/* TOPBAR */}
+        <div className="topbar">
+          <Link to="/signup" className="signupBtn">Sign up</Link>
+          <Link to="/login" className="loginBtn">Log in</Link>
+        </div>
 
-      {/* Search */}
-      <input
-        type="text"
-        placeholder="Search songs..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        style={{
-          padding: "10px",
-          marginBottom: "20px",
-          width: "100%",
-        }}
-      />
+        <div className="container">
+          <h1>My Playlist</h1>
 
-      {/* Empty state */}
-      {playlist.length === 0 ? (
-        <p>No songs in playlist</p>
-      ) : filteredSongs.length === 0 ? (
-        <p>No matching songs</p>
-      ) : (
-        <ul>
-          {filteredSongs.map((song) => (
-            <li key={song.id} style={{ marginBottom: "10px" }}>
-              <strong>{song.title}</strong> - {song.artist}
+          <input
+            className="searchInput"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search playlist..."
+          />
+
+          {filtered.map((song) => (
+            <div key={song.id} className="card">
+              <div>
+                <p className="title">{song.title}</p>
+                <p className="artist">{song.artist}</p>
+              </div>
+
               <button
+                className="btn danger"
                 onClick={() => removeSong(song.id)}
-                style={{ marginLeft: "10px" }}
               >
                 Remove
               </button>
-            </li>
+            </div>
           ))}
-        </ul>
-      )}
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Playlist;

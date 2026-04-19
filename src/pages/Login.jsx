@@ -18,12 +18,12 @@ const Login = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#121212', height: '100vh', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <form onSubmit={handleLogin} style={{ backgroundColor: 'black', padding: '40px', borderRadius: '8px', width: '300px' }}>
-        <h2 style={{ textAlign: 'center' }}>Login to Spotify</h2>
-        <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} style={{ width: '100%', padding: '10px', margin: '10px 0', borderRadius: '4px' }} />
-        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} style={{ width: '100%', padding: '10px', margin: '10px 0', borderRadius: '4px' }} />
-        <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: '#1DB954', border: 'none', borderRadius: '25px', fontWeight: 'bold', cursor: 'pointer' }}>Log In</button>
+    <div className="authPage">
+      <form onSubmit={handleLogin} className="authBox">
+        <h2 className="authTitle">Login to Spotify</h2>
+        <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} className="authInput" />
+        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} className="authInput"/>
+        <button type="submit"className="btn primary authBtn">Log In</button>
       </form>
     </div>
   );

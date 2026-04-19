@@ -1,40 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import Sidebar from "../components/Sidebar";
-const Home = () => {
-  return (
-    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#000', color: 'white', fontFamily: 'sans-serif' }}>
-    
-      <Sidebar/>
+import { Link } from "react-router-dom";
 
-      <main style={{ flex: 1, backgroundColor: '#121212', margin: '8px 8px 8px 0', borderRadius: '8px', overflowY: 'auto', position: 'relative' }}>
-        
-        {/* TOP NAV BAR */}
-        <div style={{ position: 'sticky', top: 0, backgroundColor: 'rgba(18,18,18,0.9)', padding: '15px 30px', display: 'flex', justifyContent: 'flex-end', gap: '20px', zIndex: 10 }}>
-          <Link to="/signup" style={{ color: '#b3b3b3', textDecoration: 'none', fontWeight: 'bold', marginTop: '10px' }}>Sign up</Link>
-          <Link to="/login" style={{ backgroundColor: 'white', color: 'black', padding: '10px 25px', borderRadius: '25px', textDecoration: 'none', fontWeight: 'bold' }}>Log in</Link>
+function Home() {
+  return (
+    <div className="app">
+      <Sidebar />
+
+      <div className="main">
+      
+        <div className="topbar">
+          <Link to="/signup" className="signupBtn">Sign up</Link>
+          <Link to="/login" className="loginBtn">Log in</Link>
         </div>
 
-        {/* CONTENT SECTION */}
-        <div style={{ padding: '0 30px 30px 30px' }}>
-          <h1 style={{ fontSize: '2rem', margin: '20px 0' }}>Good Morning, Unnati</h1>
-          
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>Picked for you</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '24px' }}>
-            
-            {/* Song Card Example */}
-            <div style={{ backgroundColor: '#181818', padding: '15px', borderRadius: '8px', transition: '0.3s' }}>
-              <div style={{ width: '100%', aspectRatio: '1/1', backgroundColor: '#333', borderRadius: '6px', marginBottom: '12px', boxShadow: '0 8px 16px rgba(0,0,0,0.3)' }}></div>
-              <strong style={{ display: 'block', marginBottom: '5px' }}>Daily Mix 1</strong>
-              <span style={{ fontSize: '0.85rem', color: '#b3b3b3' }}>Drake, J. Cole, Kendrick Lamar...</span>
-            </div>
+        <div className="container">
+          <h1>Good Morning</h1>
 
-            {/* Repeat this card for more grid items */}
+          <div className="grid">
+            {[1, 2, 3, 4].map((item) => (
+              <div className="musicCard" key={item}>
+                <div className="cover"></div>
+                <p className="title">Daily Mix {item}</p>
+                <p className="artist">Artist Name</p>
+              </div>
+            ))}
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
-};
+}
 
 export default Home;

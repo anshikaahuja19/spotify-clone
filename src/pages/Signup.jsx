@@ -15,12 +15,12 @@ const Signup = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#121212', height: '100vh', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <form onSubmit={handleSignup} style={{ backgroundColor: 'black', padding: '40px', borderRadius: '8px', width: '300px' }}>
-        <h2 style={{ textAlign: 'center' }}>Sign Up</h2>
-        <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} style={{ width: '100%', padding: '10px', margin: '10px 0', borderRadius: '4px' }} />
-        <input type="password" placeholder="Create Password" onChange={(e) => setPassword(e.target.value)} style={{ width: '100%', padding: '10px', margin: '10px 0', borderRadius: '4px' }} />
-        <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: '#1DB954', border: 'none', borderRadius: '25px', fontWeight: 'bold', cursor: 'pointer' }}>Sign Up</button>
+    <div className='authPage'>
+      <form onSubmit={handleSignup} className='authBox'>
+        <h2 className = 'authTitle' >Sign Up</h2>
+        <input type="email" className = 'authInput' placeholder="Email" onChange={(e) => setEmail(e.target.value)}  />
+        <input type="password" className = 'authInput' placeholder="Create Password" onChange={(e) => setPassword(e.target.value)} />
+        <button type="submit" className="btn primary authBtn">Sign Up</button>
       </form>
     </div>
   );
