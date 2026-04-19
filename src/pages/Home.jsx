@@ -1,20 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Sidebar from "../components/Sidebar";
 const Home = () => {
   return (
     <div style={{ display: 'flex', height: '100vh', backgroundColor: '#000', color: 'white', fontFamily: 'sans-serif' }}>
-      
-      {/* LEFT SIDEBAR (Teammates' Area) */}
-      <aside style={{ width: '280px', backgroundColor: '#121212', margin: '8px', borderRadius: '8px', padding: '20px' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '20px' }}>Your Library</h2>
-        <div style={{ color: '#b3b3b3', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <span>Home</span>
-          <span>Search</span>
-        </div>
-      </aside>
+    
+      <Sidebar/>
 
-      {/* MAIN CONTENT AREA */}
       <main style={{ flex: 1, backgroundColor: '#121212', margin: '8px 8px 8px 0', borderRadius: '8px', overflowY: 'auto', position: 'relative' }}>
         
         {/* TOP NAV BAR */}
