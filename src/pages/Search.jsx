@@ -222,6 +222,61 @@ function Search() {
     { name: "Discover", color: "#8D67AB" },
     { name: "Mood", color: "#E1118C" },
     { name: "Party", color: "#537AA1" }
+];
+
+  const featuredShelves = [
+    {
+      id: 1,
+      title: "Jump back in",
+      items: [
+        { title: "Arijit Singh Radio", artist: "Spotify", category: "Radio", image: "https://loremflickr.com/300/300/singer,indian?lock=1" },
+        { title: "Kabir Singh", artist: "Sachet-Parampara", category: "Album", image: "https://loremflickr.com/300/300/romance,couple?lock=2" },
+        { title: "Brown Munde", artist: "AP Dhillon", category: "Punjabi", image: "https://loremflickr.com/300/300/party,friends?lock=3" },
+        { title: "Ultimate Love Songs", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/romantic,soft?lock=4" },
+        { title: "Diljit Dosanjh Hits", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/concert,neon?lock=5" },
+        { title: "Shreya Ghoshal Mix", artist: "Spotify", category: "Mix", image: "https://loremflickr.com/300/300/beautiful,singer?lock=6" },
+        { title: "Yeh Jawaani Hai Deewani", artist: "Pritam", category: "Album", image: "https://loremflickr.com/300/300/mountains,friends?lock=7" }
+      ]
+    },
+    {
+      id: 2,
+      title: "Recently played",
+      items: [
+        { title: "Chaleya", artist: "Arijit Singh", category: "Hindi", image: "https://loremflickr.com/300/300/dancer,stage?lock=8" },
+        { title: "Moosetape", artist: "Sidhu Moose Wala", category: "Album", image: "https://loremflickr.com/300/300/tractor,punjab?lock=9" },
+        { title: "Lover", artist: "Diljit Dosanjh", category: "Punjabi", image: "https://loremflickr.com/300/300/romance,sunset?lock=10" },
+        { title: "Heeriye", artist: "Arijit Singh", category: "Hindi", image: "https://loremflickr.com/300/300/couple,soft?lock=11" },
+        { title: "Neha Kakkar Radio", artist: "Spotify", category: "Radio", image: "https://loremflickr.com/300/300/singer,female?lock=12" },
+        { title: "Atif Aslam Hits", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/concert,acoustic?lock=13" },
+        { title: "Desi Hits", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/party,indian?lock=14" }
+      ]
+    },
+    {
+      id: 3,
+      title: "Today's biggest hits",
+      items: [
+        { title: "Hot Hits Hindi", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/firework,party?lock=15" },
+        { title: "Punjabi 101", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/neon,club?lock=16" },
+        { title: "Top 50 - India", artist: "Spotify Charts", category: "Charts", image: "https://loremflickr.com/300/300/india,chart?lock=17" },
+        { title: "Latest Love Songs", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/heart,love?lock=18" },
+        { title: "Viral 50 - India", artist: "Spotify Charts", category: "Charts", image: "https://loremflickr.com/300/300/phone,music?lock=19" },
+        { title: "O Maahi", artist: "Arijit Singh", category: "Hindi", image: "https://loremflickr.com/300/300/desert,romance?lock=20" },
+        { title: "Pasoori", artist: "Ali Sethi", category: "Trending", image: "https://loremflickr.com/300/300/art,abstract?lock=21" }
+      ]
+    },
+    {
+      id: 4,
+      title: "Throwback",
+      items: [
+        { title: "2000s Bollywood", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/cassette,retro?lock=22" },
+        { title: "90s Romantic Hits", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/flower,romance?lock=23" },
+        { title: "Kal Ho Naa Ho", artist: "Shankar-Ehsaan-Loy", category: "Album", image: "https://loremflickr.com/300/300/bridge,city?lock=24" },
+        { title: "Tujh Mein Rab", artist: "Roop Kumar", category: "Hindi", image: "https://loremflickr.com/300/300/temple,india?lock=25" },
+        { title: "Old is Gold", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/recordplayer,vintage?lock=26" },
+        { title: "Udit Narayan Classics", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/microphone,studio?lock=27" },
+        { title: "KK Essentials", artist: "Spotify", category: "Playlist", image: "https://loremflickr.com/300/300/guitar,acoustic?lock=28" }
+      ]
+    }
   ];
 
   useEffect(() => {
@@ -385,6 +440,26 @@ try {
                   </div>
                 ))}
               </div>
+
+              {/* Horizontal Shelves mapping */}
+              {featuredShelves.map((shelf) => (
+                <div key={shelf.id} className="shelf-container">
+                  <h2 className="sectionTitle">{shelf.title}</h2>
+                  <div className="shelf-row">
+                    {shelf.items.map((item, idx) => (
+                      <div key={idx} className="shelf-card" onClick={() => playSong(item)}>
+                        <img 
+                          src={item.image || `https://picsum.photos/seed/${encodeURIComponent(item.title)}/150/150`} 
+                          alt={item.title} 
+                          className="shelf-img" 
+                        />
+                        <p className="shelf-title">{item.title}</p>
+                        <p className="shelf-subtext">{item.artist}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
