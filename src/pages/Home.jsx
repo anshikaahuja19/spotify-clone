@@ -5,11 +5,25 @@ import styles from "./Home.module.css";
 import TopNav from "../components/TopNav.jsx";
 import navStyles from "../components/TopNav.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Home() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const [songs, setSongs] = useState([]);
+
+const randomQueries = ["love", "party", "sad", "dance", "lofi", "rock"];
+
+useEffect(() => {
+  const random = randomQueries[Math.floor(Math.random() * randomQueries.length)];
+
+  fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${random}`)
+    .then(res => res.json())
+    .then(data => {
+      setSongs(data.data);
+    });
+}, []);
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
@@ -41,28 +55,34 @@ function Home() {
 
 <div className={styles.quickGrid}>
 
-  <div 
-    className={styles.quickCard} 
-    onClick={() => navigate('/playlist')}
-  >
+  <div className={styles.quickCard} onClick={() => navigate('/playlist')}>
     <i className="fa-regular fa-bookmark"></i>
     <p>Your Playlist</p>
   </div>
 
-  <div 
-    className={styles.quickCard} 
-    onClick={() => navigate('/search')}
-  >
+  <div className={styles.quickCard} onClick={() => navigate('/search')}>
     <i className="fa-solid fa-heart"></i>
     <p>Favorites</p>
   </div>
 
-  <div 
-    className={styles.quickCard} 
-    onClick={() => navigate('/search')}
-  >
+  <div className={styles.quickCard} onClick={() => navigate('/search')}>
     <i className="fa-solid fa-headphones"></i>
     <p>Your Queue</p>
+  </div>
+{/* added more cards */}
+  <div className={styles.quickCard}>
+    <i className="fa-solid fa-music"></i>
+    <p>Recently Played</p>
+  </div>
+
+  <div className={styles.quickCard}>
+    <i className="fa-solid fa-star"></i>
+    <p>Top Hits</p>
+  </div>
+
+  <div className={styles.quickCard}>
+    <i className="fa-solid fa-clock"></i>
+    <p>Watch Later</p>
   </div>
 
 </div>
