@@ -7,15 +7,27 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    e.preventDefault();
-    const savedUser = JSON.parse(localStorage.getItem('user'));
-    if (savedUser && savedUser.email === email && savedUser.password === password) {
-      localStorage.setItem('isLoggedIn', 'true');
-      navigate('/'); 
-    } else {
-      alert("Invalid email or password!");
-    }
-  };
+  e.preventDefault();
+
+  if (!email || !password) {
+    alert("Please enter email and password");
+    return;
+  }
+
+  const savedUser = JSON.parse(localStorage.getItem('user'));
+
+  if (
+    savedUser &&
+    savedUser.email === email &&
+    savedUser.password === password
+  ) {
+    localStorage.setItem('isLoggedIn', 'true');
+    window.location.reload();
+    navigate('/');
+  } else {
+    alert("Invalid email or password!");
+  }
+};
 
   return (
     <div className="authPage">

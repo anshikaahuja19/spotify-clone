@@ -1,0 +1,84 @@
+.homeContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #000;
+}
+
+.mainView {
+  flex: 1;
+  background: linear-gradient(to bottom, #1e1e1e, #121212);
+  margin: 8px 8px 80px 0; /* Space for player at bottom */
+  border-radius: 8px;
+  overflow-y: auto;
+  padding: 16px 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.sectionTitle {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 30px;
+}
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters button {
+  background: #2a2a2a;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.active {
+  background: white;
+  color: black;
+}
+.quickGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.quickCard {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  font-weight: 600;
+  background: #2a2a2a;
+}
+
+.quickCard:hover {
+  background: #3a3a3a;
+  transform: scale(1.03);
+}
+
+.quickCard p {
+  margin-left: 10px;
+  color: white;
+}
+.quickCard i {
+  font-size: 24px;
+}
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;   /* 👈 THIS fixes spacing from top bar */
+  margin-bottom: 15px;
+}

@@ -7,12 +7,19 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleSignup = (e) => {
-    e.preventDefault();
-    const userData = { email, password };
-    localStorage.setItem('user', JSON.stringify(userData));
-    alert("Account created! Please login.");
-    navigate('/login');
-  };
+  e.preventDefault();
+
+  if (!email || !password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const userData = { email, password };
+  localStorage.setItem('user', JSON.stringify(userData));
+
+  alert("Account created! Please login.");
+  navigate('/login');
+};
 
   return (
     <div className='authPage'>
