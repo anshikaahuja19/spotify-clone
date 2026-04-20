@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 function Playlist() {
   const [playlist, setPlaylist] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const data = localStorage.getItem("spotify_playlist");
-    if (data) setPlaylist(JSON.parse(data));
+    try {
+      const data = localStorage.getItem("spotify_playlist");
+      if (data && data !== "undefined") setPlaylist(JSON.parse(data));
+    } catch (e) {
+      console.error(e);
+    }
   }, []);
 
   const removeSong = (id) => {
@@ -24,6 +29,7 @@ function Playlist() {
 
   return (
     <div className="app">
+        <Sidebar />
       <div className="main">
         {/* TOPBAR */}
         <div className="topbar">
