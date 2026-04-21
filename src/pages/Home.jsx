@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 import Sidebar from "../components/Sidebar.jsx";
 import TopNav from "../components/TopNav.jsx";
-
 
 import RecentlyPlayed from "../sections/RecentlyPlayed.jsx";
 import FeaturedCharts from "../sections/FeaturedCharts.jsx";
@@ -14,13 +12,43 @@ import styles from "./Home.module.css";
 
 function Home() {
   const navigate = useNavigate();
-  const [activeFilter, setActiveFilter] = useState('All');
+
+  // 🔍 Search state
+  const [search, setSearch] = useState("");
+  const [results, setResults] = useState([]);
+
+  // 🎯 Fetch search results
+  useEffect(() => {
+    if (search.trim() === "") {
+      setResults([]);
+      return;
+    }
+
+    fetch(
+      `https://itunes.apple.com/search?term=${encodeURIComponent(
+        search
+      )}&media=music&entity=song&limit=5`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const formatted = (data.results || []).map((item) => ({
+          title: item.trackName,
+          artist: item.artistName,
+          image: item.artworkUrl100,
+        }));
+        setResults(formatted);
+      })
+      .catch((err) => console.error(err));
+  }, [search]);
+
+  // 🎵 Filters
+  const [activeFilter, setActiveFilter] = useState("All");
 
   const getGreeting = () => {
     const h = new Date().getHours();
-    if (h < 12) return 'Good Morning';
-    if (h < 17) return 'Good Afternoon';
-    return 'Good Evening';
+    if (h < 12) return "Good Morning";
+    if (h < 17) return "Good Afternoon";
+    return "Good Evening";
   };
 
   return (
@@ -28,14 +56,40 @@ function Home() {
       <Sidebar />
 
       <div className={styles.mainView}>
-        <TopNav />
+        {/* 🔍 Top Search Bar */}
+        <TopNav search={search} setSearch={setSearch} />
 
-        {/* Filters */}
+        {/* 🔽 Search Dropdown */}
+        {search && (
+          <div className={styles.searchDropdown}>
+            {results.length === 0 ? (
+              <p className={styles.noResult}>No results found</p>
+            ) : (
+              results.map((song, i) => (
+                <div
+                  key={i}
+                  className={styles.searchItem}
+                  onClick={() => navigate(`/search?q=${search}`)}
+                >
+                  <img src={song.image} alt={song.title} />
+                  <div className={styles.searchText}>
+                    <p className={styles.songTitle}>{song.title}</p>
+                    <span className={styles.songArtist}>
+                      {song.artist}
+                    </span>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        )}
+
+        {/* 🎛 Filters */}
         <div className={styles.filters}>
-          {['All', 'Music', 'Podcasts'].map(f => (
+          {["All", "Music", "Podcasts"].map((f) => (
             <button
               key={f}
-              className={activeFilter === f ? styles.active : ''}
+              className={activeFilter === f ? styles.active : ""}
               onClick={() => setActiveFilter(f)}
             >
               {f}
@@ -43,47 +97,57 @@ function Home() {
           ))}
         </div>
 
-        {/* Greeting */}
+        {/* 👋 Greeting */}
         <h1 className={styles.sectionTitle}>{getGreeting()}</h1>
 
-        {/* Quick Cards */}
+        {/* ⚡ Quick Cards */}
         <div className={styles.quickGrid}>
-          <div className={styles.quickCard} onClick={() => navigate('/playlist')}>
+          <div
+            className={styles.quickCard}
+            onClick={() => navigate("/playlist")}
+          >
             <i className="fa-regular fa-bookmark"></i>
             <p>Your Playlist</p>
           </div>
-          <div className={styles.quickCard} onClick={() => navigate('/search')}>
+
+          <div
+            className={styles.quickCard}
+            onClick={() => navigate("/search")}
+          >
             <i className="fa-solid fa-heart"></i>
             <p>Favorites</p>
           </div>
-          <div className={styles.quickCard} onClick={() => navigate('/search')}>
+
+          <div
+            className={styles.quickCard}
+            onClick={() => navigate("/search")}
+          >
             <i className="fa-solid fa-headphones"></i>
             <p>Your Queue</p>
           </div>
+
           <div className={styles.quickCard}>
             <i className="fa-solid fa-music"></i>
             <p>Recently Played</p>
           </div>
+
           <div className={styles.quickCard}>
             <i className="fa-solid fa-star"></i>
             <p>Top Hits</p>
           </div>
+
           <div className={styles.quickCard}>
             <i className="fa-solid fa-clock"></i>
             <p>Watch Later</p>
           </div>
         </div>
 
-        {/* SECTION 1 — Recently Played  */}
+        {/* 🎧 Sections */}
         <RecentlyPlayed />
-
-        {/* SECTION 2 — Made For You  */}
         <MadeForYou />
-
-        {/* SECTION 3 — Top Charts  */}
         <FeaturedCharts />
 
-        <div style={{ height: '40px' }} />
+        <div style={{ height: "40px" }} />
       </div>
     </div>
   );

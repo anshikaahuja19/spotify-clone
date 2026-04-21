@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SongCard({ song }) {
-  // Use the data passed from Home.jsx
+
   return (
     <div className="musicCard">
       <div className="cover">

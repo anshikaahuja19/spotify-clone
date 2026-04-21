@@ -29,7 +29,7 @@ function Playlist() {
 
   return (
     <div className="app">
-        <Sidebar />
+      <Sidebar />
       <div className="main">
         {/* TOPBAR */}
         <div className="topbar">
@@ -62,33 +62,24 @@ function Playlist() {
           <span>Artist</span>
           <span></span>
         </div>
-        {/* <div className="container">
-          <h1>My Playlist</h1> */}
-        
-          {/* <input
-            className="searchInput"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search playlist..."
-          /> */}
 
-          {filtered.map((song) => (
-            <div key={song.id} className="card">
-              <div>
-                <p className="title">{song.title}</p>
-                <p className="artist">{song.artist}</p>
-              </div>
+        {filtered.map((song, index) => (
+          <div key={song.id} className="songRow">
+            <span className="index">{index + 1}</span>
 
-              <button
-                className="btn danger"
-                onClick={() => removeSong(song.id)}
-              >
-                Remove
-              </button>
-            </div>
-          ))}
-        </div>
+            <span className="title">{song.title}</span>
+
+            <span className="artist">{song.artist}</span>
+            <button
+              className="btn danger"
+              onClick={() => removeSong(song.id)}
+            >
+              Remove
+            </button>
+          </div>
+        ))}
       </div>
+    </div>
     // </div>
   );
 }
