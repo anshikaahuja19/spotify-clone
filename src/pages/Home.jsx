@@ -35,13 +35,14 @@ function Home() {
           title: item.trackName,
           artist: item.artistName,
           image: item.artworkUrl100,
+           audio: item.previewUrl 
         }));
         setResults(formatted);
       })
       .catch((err) => console.error(err));
   }, [search]);
 
-  // 🎵 Filters
+ 
   const [activeFilter, setActiveFilter] = useState("All");
 
   const getGreeting = () => {
@@ -56,10 +57,10 @@ function Home() {
       <Sidebar />
 
       <div className={styles.mainView}>
-        {/* 🔍 Top Search Bar */}
+       
         <TopNav search={search} setSearch={setSearch} />
 
-        {/* 🔽 Search Dropdown */}
+       
         {search && (
           <div className={styles.searchDropdown}>
             {results.length === 0 ? (
@@ -84,7 +85,6 @@ function Home() {
           </div>
         )}
 
-        {/* 🎛 Filters */}
         <div className={styles.filters}>
           {["All", "Music", "Podcasts"].map((f) => (
             <button
@@ -97,10 +97,10 @@ function Home() {
           ))}
         </div>
 
-        {/* 👋 Greeting */}
+        
         <h1 className={styles.sectionTitle}>{getGreeting()}</h1>
 
-        {/* ⚡ Quick Cards */}
+       
         <div className={styles.quickGrid}>
           <div
             className={styles.quickCard}
@@ -142,7 +142,7 @@ function Home() {
           </div>
         </div>
 
-        {/* 🎧 Sections */}
+        
         <RecentlyPlayed />
         <MadeForYou />
         <FeaturedCharts />

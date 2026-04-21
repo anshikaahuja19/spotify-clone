@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import { useMusic } from "../context/MusicContext";
 
 function Playlist() {
+  const { playSong } = useMusic();
   const [playlist, setPlaylist] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -31,7 +33,7 @@ function Playlist() {
     <div className="app">
       <Sidebar />
       <div className="main">
-        {/* TOPBAR */}
+
         <div className="topbar">
           <Link to="/signup" className="signupBtn">Sign up</Link>
           <Link to="/login" className="loginBtn">Log in</Link>
@@ -64,12 +66,37 @@ function Playlist() {
         </div>
 
         {filtered.map((song, index) => (
-          <div key={song.id} className="songRow">
+          <div
+            key={song.id}
+            className="songRow"
+            onClick={() => playSong(song)}
+          >
             <span className="index">{index + 1}</span>
+            <button
+              className="rowPlayBtn"
+              onClick={() => playSong(song)}
+            >
+              ▶
+            </button>
+            <div className="songInfo">
+              <img
+                src={
+                  song.image ||
+                  `https://picsum.photos/seed/${encodeURIComponent(song.title)}/60/60`
+                }
+                alt={song.title}
+                className="songImage"
+              />
 
-            <span className="title">{song.title}</span>
 
-            <span className="artist">{song.artist}</span>
+              <div>
+                <p className="title">{song.title}</p>
+                <p className="artist">{song.artist}</p>
+              </div>
+            </div>
+
+
+
             <button
               className="btn danger"
               onClick={() => removeSong(song.id)}

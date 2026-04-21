@@ -640,24 +640,78 @@ font-weight: 500;
   transform: scale(1.05);
 }
 
+
+
+
+
 .songRow {
   display: grid;
-  grid-template-columns: 50px 2fr 2fr 120px;
-  padding: 14px 30px;
+  grid-template-columns: 40px 1fr 120px;
   align-items: center;
-  border-bottom: 1px solid #282828;
-}
-
-.songRow.header {
-  font-size: 13px;
-  color: #b3b3b3;
+  padding: 10px;
+  border-radius: 6px;
 }
 
 .songRow:hover {
-  background-color: #1e1e1e;
+  background: #1f1f1f;
 }
 
-.index {
+.songInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.songImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.title {
+  color: white;
+  font-size: 14px;
+}
+
+.artist {
   color: #b3b3b3;
+  font-size: 12px;
 }
 
+
+ .index {
+  color: #b3b3b3;
+} 
+/* Make row relative so we can position play button */
+.songRow {
+  position: relative;
+}
+
+/* Hide index when hovering */
+.songRow:hover .index {
+  opacity: 0;
+}
+
+/* Play button (left side like Spotify) */
+.rowPlayBtn {
+  position: absolute;
+  left: 8px;
+  font-size: 16px;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Show play button on hover */
+.songRow:hover .rowPlayBtn {
+  opacity: 1;
+}
+
+/* Optional: slight row highlight */
+.songRow:hover {
+  background: rgba(255, 255, 255, 0.08);
+}

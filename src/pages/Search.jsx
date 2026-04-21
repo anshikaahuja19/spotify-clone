@@ -46,6 +46,7 @@ function Search() {
           title: item.trackName,
           artist: item.artistName,
           image: item.artworkUrl100,
+          audio: item.previewUrl 
         }));
         setSongs(formatted);
       })
@@ -63,11 +64,6 @@ function Search() {
     localStorage.setItem("spotify_playlist", JSON.stringify(updated));
   };
 
-
-
-  // const filtered = songs.filter((s) =>
-  //   s.title.toLowerCase().includes(search.toLowerCase())
-  // );
 
   return (
     <div className="app">

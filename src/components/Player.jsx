@@ -2,6 +2,7 @@ import React from 'react';
 import { useMusic } from '../context/MusicContext';
 
 function Player() {
+
   const { currentSong, isPlaying, progress, togglePlay, playNext, playPrevious, toggleLike, likedSongs } = useMusic();
 
   if (!currentSong) return null;
@@ -10,11 +11,15 @@ function Player() {
 
   return (
     <div className="player-container">
+      <audio
+        src={currentSong?.audio}
+        autoPlay
+      />
       <div className="player-left">
-        <img 
-          src={currentSong.image || `https://picsum.photos/seed/${encodeURIComponent(currentSong.title)}/64/64`} 
-          alt={currentSong.title} 
-          className="player-cover" 
+        <img
+          src={currentSong.image || `https://picsum.photos/seed/${encodeURIComponent(currentSong.title)}/64/64`}
+          alt={currentSong.title}
+          className="player-cover"
         />
         <div className="player-info">
           <h4>{currentSong.title}</h4>
