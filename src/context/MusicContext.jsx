@@ -17,6 +17,16 @@ export const MusicProvider = ({ children }) => {
       return [];
     }
   });
+
+  const [recentSongs, setRecentSongs] = useState(() => {
+    try {
+      const saved = localStorage.getItem("spotify_recent_songs");
+      return saved && saved !== "undefined" ? JSON.parse(saved) : [];
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  });
   const [progress, setProgress] = useState(0);
 
   // Mock audio progress since we lack 160+ unique MP3 URLs
@@ -41,10 +51,24 @@ export const MusicProvider = ({ children }) => {
     localStorage.setItem("spotify_liked_songs", JSON.stringify(likedSongs));
   }, [likedSongs]);
 
+  // Persist recent songs
+  useEffect(() => {
+    localStorage.setItem("spotify_recent_songs", JSON.stringify(recentSongs));
+  }, [recentSongs]);
+
+  const addToRecents = (song) => {
+    setRecentSongs(prev => {
+      // Remove duplicate (same title), prepend new entry, cap at 20
+      const filtered = prev.filter(s => s.title !== song.title);
+      return [song, ...filtered].slice(0, 20);
+    });
+  };
+
   const playSong = (song) => {
     setCurrentSong(song);
     setProgress(0);
     setIsPlaying(true);
+    addToRecents(song);
   };
 
   const togglePlay = () => {
@@ -89,6 +113,7 @@ export const MusicProvider = ({ children }) => {
       queue,
       progress,
       likedSongs,
+      recentSongs,
       playSong,
       togglePlay,
       playNext,
