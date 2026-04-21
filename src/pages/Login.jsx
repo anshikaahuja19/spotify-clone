@@ -22,7 +22,7 @@ const Login = () => {
     savedUser.password === password
   ) {
     localStorage.setItem('isLoggedIn', 'true');
-    window.location.reload();
+    // window.location.reload();
     navigate('/');
   } else {
     alert("Invalid email or password!");
