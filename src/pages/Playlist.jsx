@@ -36,16 +36,41 @@ function Playlist() {
           <Link to="/signup" className="signupBtn">Sign up</Link>
           <Link to="/login" className="loginBtn">Log in</Link>
         </div>
+        <div className="playlistHeader">
+          <div className="playlistCover">❤️</div>
 
-        <div className="container">
-          <h1>My Playlist</h1>
-
+          <div>
+            <p className="playlistType">Public Playlist</p>
+            <h1 className="playlistTitle">My Playlist</h1>
+            <p className="playlistMeta">
+              Anshika • {playlist.length} songs
+            </p>
+          </div>
+        </div>
+        <div className="playlistActions">
+          <button className="playBtn">▶</button>
           <input
             className="searchInput"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search playlist..."
+            placeholder="Search in playlist..."
           />
+        </div>
+        <div className="songRow header">
+          <span>#</span>
+          <span>Title</span>
+          <span>Artist</span>
+          <span></span>
+        </div>
+        {/* <div className="container">
+          <h1>My Playlist</h1> */}
+        
+          {/* <input
+            className="searchInput"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search playlist..."
+          /> */}
 
           {filtered.map((song) => (
             <div key={song.id} className="card">
@@ -64,7 +89,7 @@ function Playlist() {
           ))}
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
 
