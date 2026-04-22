@@ -15,15 +15,14 @@ body {
   display: flex;
   height: 100vh;
   background-color: #000;
-    padding-bottom: 90px;
+  padding-bottom: 0px;
 }
 
 .main {
   flex: 1;
   background-color: #121212;
-  margin: 8px;
-  border-radius: 10px;
-  padding: 0;
+  margin: 0px;
+  padding: 0px 32px 32px 32px;
   overflow-y: auto;
 }
 
@@ -700,17 +699,16 @@ font-weight: 500;
  .index {
   color: #b3b3b3;
 } 
-/* Make row relative so we can position play button */
+
 .songRow {
   position: relative;
 }
 
-/* Hide index when hovering */
+
 .songRow:hover .index {
   opacity: 0;
 }
 
-/* Play button (left side like Spotify) */
 .rowPlayBtn {
   position: absolute;
   left: 8px;
@@ -723,12 +721,11 @@ font-weight: 500;
   transition: opacity 0.2s ease;
 }
 
-/* Show play button on hover */
+
 .songRow:hover .rowPlayBtn {
   opacity: 1;
 }
 
-/* Optional: slight row highlight */
 .songRow:hover {
   background: rgba(255, 255, 255, 0.08);
 }
@@ -758,9 +755,7 @@ font-weight: 500;
   overflow-y: auto;
   background-color: #121212;
 }
-.main {
-  padding: 80px 32px 32px 32px;
-}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
