@@ -1,15 +1,16 @@
 .mainView {
   flex: 1;
-  position: relative; /* ✅ needed for dropdown positioning */
   background-color: #121212;
+  /* Maintain your subtle green glow */
   background-image: radial-gradient(
     circle at 50% -10%, 
-    rgba(29, 185, 84, 0.08) 0%, 
+    rgba(29, 185, 84, 0.1) 0%, 
     transparent 50%
   );
-  margin: 0;
+  /* FIX: Remove the 8px margin to stop the "boxed" look */
+  margin: 0; 
+  padding: 32px; /* Increased padding for better spacing */
   overflow-y: auto;
-  padding: 16px 32px;
 }
 
 /* 🔍 SEARCH DROPDOWN */
@@ -82,21 +83,24 @@
 }
 
 /* 🎛 Filters */
+
 .filters {
   display: flex;
-  gap: 8px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  /* FIX: Increased top margin so it's not hitting the top navigation */
+  margin-top: 24px; 
+  margin-bottom: 32px;
 }
 
+
 .filters button {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1); /* */
   border: none;
   color: white;
-  padding: 6px 14px;
+  padding: 8px 16px; /* Slightly larger pill shape */
   border-radius: 32px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -171,3 +175,5 @@
   background-color: #000; /* Pure black background */
   overflow: hidden;
 }
+
+
