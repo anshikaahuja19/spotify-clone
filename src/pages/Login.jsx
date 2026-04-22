@@ -25,6 +25,7 @@ const Login = () => {
     localStorage.setItem('currentUser', JSON.stringify(savedUser));
     // window.location.reload();
     navigate('/');
+    window.location.reload();
   } else {
     alert("Invalid email or password!");
   }

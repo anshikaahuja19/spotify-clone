@@ -9,21 +9,33 @@ import Player from "./components/Player";
 import MadeForYou from "./pages/MadeForYou";
 import Music from "./pages/Music";
 import Podcasts from "./pages/Podcasts";
+import { useState } from "react";
+import Sidebar from "./components/Sidebar";
+import TopNav from "./components/TopNav";
 
 function App() {
+  const [search, setSearch] = useState("");
   return (
- <MusicProvider>
+    <MusicProvider>
       <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/playlist" element={<Playlist />} />
-          <Route path="/made-for-you" element={<MadeForYou />} />
-          <Route path="/music" element={<Music />} />
-          <Route path="/podcasts" element={<Podcasts />} />
-        </Routes>
+        <div className="appLayout">
+          <Sidebar />
+
+          <div className="mainContent">
+            <TopNav search={search} setSearch={setSearch} />
+
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search search={search} setSearch={setSearch} />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/playlist" element={<Playlist />} />
+              <Route path="/made-for-you" element={<MadeForYou />} />
+              <Route path="/music" element={<Music />} />
+              <Route path="/podcasts" element={<Podcasts />} />
+            </Routes>
+          </div>
+        </div>
         <Player />
       </Router>
     </MusicProvider>

@@ -9,6 +9,30 @@ function Playlist() {
   const [search, setSearch] = useState("");
   const user = JSON.parse(localStorage.getItem("currentUser") || "null");
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const [results, setResults] = useState([]);
+  useEffect(() => {
+  if (search.trim() === "") {
+    setResults([]);
+    return;
+  }
+
+  fetch(
+    `https://itunes.apple.com/search?term=${encodeURIComponent(
+      search
+    )}&media=music&entity=song&limit=5`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      const formatted = (data.results || []).map((item) => ({
+        title: item.trackName,
+        artist: item.artistName,
+        image: item.artworkUrl100,
+        audio: item.previewUrl,
+      }));
+      setResults(formatted);
+    })
+    .catch((err) => console.error(err));
+}, [search]);
 
   useEffect(() => {
     try {
@@ -33,10 +57,10 @@ function Playlist() {
 
   return (
     <div className="app">
-      <Sidebar />
+    
       <div className="main">
 
-        <div className="topbar">
+        {/* <div className="topbar">
           {isLoggedIn && user ? (
             <div className="profileIcon">
               {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
@@ -47,9 +71,26 @@ function Playlist() {
               <Link to="/login" className="loginBtn">Log in</Link>
             </>
           )}
-        </div>
+        </div> */}
         <div className="playlistHeader">
-          <div className="playlistCover">❤️</div>
+          <div className="playlistCover">
+            {playlist.length === 0 ? (
+              <div className="emptyCover">🎵</div>
+            ) : (
+              <div className="coverGrid">
+                {playlist.slice(0, 4).map((song, index) => (
+                  <img
+                    key={index}
+                    src={
+                      song.image ||
+                      `https://picsum.photos/seed/${encodeURIComponent(song.title)}/100/100`
+                    }
+                    alt={song.title}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
 
           <div>
             <p className="playlistType">Public Playlist</p>

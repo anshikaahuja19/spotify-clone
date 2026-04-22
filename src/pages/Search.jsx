@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMusic } from "../context/MusicContext";
-import Sidebar from "../components/Sidebar";
+
 import { useLocation } from "react-router-dom";
 
 const browseCategories = [
@@ -79,9 +79,8 @@ function BrowseCard({ label, color, searchTerm, large, route }) {
   );
 }
 
-function Search() {
+function Search({ search, setSearch }) {
   const location = useLocation();
-  const [search, setSearch] = useState("");
   const [playlist, setPlaylist] = useState([]);
   const [songs, setSongs] = useState([]);
   const { playSong, addToQueue, toggleLike, likedSongs } = useMusic();
@@ -137,12 +136,12 @@ function Search() {
   };
 
   return (
-    <div className="app">
-      <Sidebar />
+    
+   
 
       <div className="main">
         {/* TOPBAR */}
-        <div className="topbar">
+        {/* <div className="topbar">
           <div className="topbarLeft">
             <div className="searchContainer">
               <svg aria-hidden="true" className="searchIcon" viewBox="0 0 24 24">
@@ -154,13 +153,13 @@ function Search() {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="What do you want to listen to?"
               />
-            </div>
-          </div>
+            </div> */}
+          {/* </div> 
           <div className="topbarRight">
             <Link to="/signup" className="signupBtn">Sign up</Link>
             <Link to="/login" className="loginBtn">Log in</Link>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
         {/* CONTENT */}
         <div className="container">
@@ -233,7 +232,7 @@ function Search() {
             </div>
           )}
         </div>
-      </div>
+      
 
       <style>{`
         .browseSection { padding-bottom: 48px; }

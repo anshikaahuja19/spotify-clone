@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar.jsx";
-import TopNav from "../components/TopNav.jsx";
+
 
 import RecentlyPlayed from "../sections/RecentlyPlayed.jsx";
 import FeaturedCharts from "../sections/FeaturedCharts.jsx";
@@ -16,11 +16,11 @@ function Home() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
 
-  // 🔍 Search state
+  
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
 
-  // 🎯 Fetch search results
+ 
   useEffect(() => {
     if (search.trim() === "") {
       setResults([]);
@@ -57,11 +57,11 @@ function Home() {
 
   return (
     <div className={styles.homeContainer}>
-      <Sidebar />
+      
 
       <div className={styles.mainView}>
 
-        <TopNav search={search} setSearch={setSearch} />
+       
 
 
         {search && (
