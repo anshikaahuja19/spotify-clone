@@ -1,10 +1,17 @@
+/* 🔲 Layout */
+.homeContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+}
 .mainView {
   flex: 1;
   background-color: #121212;
   /* Maintain your subtle green glow */
   background-image: radial-gradient(
-    circle at 50% -10%, 
-    rgba(29, 185, 84, 0.1) 0%, 
+    circle at 50% -10%,
+    rgba(29, 185, 84, 0.1) 0%,
     transparent 50%
   );
   /* FIX: Remove the 8px margin to stop the "boxed" look */
@@ -168,12 +175,3 @@
   justify-content: center;
   background: rgba(29, 185, 84, 0.05); /* Very faint green box behind icon */
 }
-/*  for the whole page */
-.homeContainer {
-  display: flex;
-  height: 100vh;
-  background-color: #000; /* Pure black background */
-  overflow: hidden;
-}
-
-

@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Playlist from "./pages/Playlist";
 import { MusicProvider } from "./context/MusicContext";
 import Player from "./components/Player";
+import MadeForYou from "./pages/MadeForYou";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/playlist" element={<Playlist />} />
+          <Route path="/made-for-you" element={<MadeForYou />} />
         </Routes>
         <Player />
       </Router>
