@@ -148,13 +148,9 @@ function Home() {
         <MadeForYou />
         <FeaturedCharts />
 
-<<<<<<< HEAD
-        <div style={{ height: "40px" }} />
-=======
-        <LongTracks />
+<LongTracks />
 
-        <div style={{ height: '40px' }} />
->>>>>>> 8c1ac07 (Added LongTracks section)
+<div style={{ height: "40px" }} />
       </div>
     </div>
   );
