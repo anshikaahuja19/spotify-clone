@@ -7,6 +7,7 @@ import TopNav from "../components/TopNav.jsx";
 import RecentlyPlayed from "../sections/RecentlyPlayed.jsx";
 import FeaturedCharts from "../sections/FeaturedCharts.jsx";
 import MadeForYou from "../sections/MadeForYou.jsx";
+import LongTracks from "../sections/LongTracks.jsx";
 
 import styles from "./Home.module.css";
 
@@ -147,7 +148,13 @@ function Home() {
         <MadeForYou />
         <FeaturedCharts />
 
+<<<<<<< HEAD
         <div style={{ height: "40px" }} />
+=======
+        <LongTracks />
+
+        <div style={{ height: '40px' }} />
+>>>>>>> 8c1ac07 (Added LongTracks section)
       </div>
     </div>
   );

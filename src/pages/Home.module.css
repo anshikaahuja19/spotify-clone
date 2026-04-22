@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 /* 🔲 Layout */
 .homeContainer {
   display: flex;
   height: 100vh;
   background-color: #000;
 }
+=======
+>>>>>>> 8c1ac07 (Added LongTracks section)
 
 .mainView {
   flex: 1;
@@ -170,5 +173,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
   background: rgba(29, 185, 84, 0.05);
+=======
+  background: rgba(29, 185, 84, 0.05); /* Very faint green box behind icon */
+}
+/*  for the whole page */
+.homeContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #000; /* Pure black background */
+  overflow: hidden;
+}
+
+
+.mainView {
+  flex: 1;
+  background-color: #121212; /* Dark grey like Spotify */
+  /* Remove the margin and border-radius that caused the "box" look */
+  margin: 0; 
+  padding: 16px 32px;
+  overflow-y: auto;
+  
+  
+  background-image: radial-gradient(
+    circle at 50% -10%, 
+    rgba(29, 185, 84, 0.08) 0%, 
+    transparent 50%
+  );
+>>>>>>> 8c1ac07 (Added LongTracks section)
 }
