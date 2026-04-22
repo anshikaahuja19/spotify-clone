@@ -7,7 +7,8 @@ import Playlist from "./pages/Playlist";
 import { MusicProvider } from "./context/MusicContext";
 import Player from "./components/Player";
 import MadeForYou from "./pages/MadeForYou";
-
+import Music from "./pages/Music";
+import Podcasts from "./pages/Podcasts";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/playlist" element={<Playlist />} />
           <Route path="/made-for-you" element={<MadeForYou />} />
+          <Route path="/music" element={<Music />} />
+          <Route path="/podcasts" element={<Podcasts />} />
         </Routes>
         <Player />
       </Router>

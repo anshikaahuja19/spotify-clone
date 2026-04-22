@@ -5,8 +5,8 @@ import Sidebar from "../components/Sidebar";
 import { useLocation } from "react-router-dom";
 
 const browseCategories = [
-  { label: "Music", color: "#e91e8c", searchTerm: "top hits", route: null },
-  { label: "Podcasts", color: "#006450", searchTerm: "podcast music", route: null },
+  { label: "Music", color: "#e91e8c", searchTerm: "top hits", route: "/music" },
+  { label: "Podcasts", color: "#006450", searchTerm: "podcast music", route: "/podcasts" },
   { label: "Live Events", color: "#8400e7", searchTerm: "live concert", route: null },
 ];
 
