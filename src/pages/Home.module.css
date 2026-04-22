@@ -173,9 +173,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-<<<<<<< HEAD
-  background: rgba(29, 185, 84, 0.05);
-=======
   background: rgba(29, 185, 84, 0.05); /* Very faint green box behind icon */
 }
 /*  for the whole page */
