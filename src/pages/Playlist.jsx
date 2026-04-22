@@ -7,6 +7,8 @@ function Playlist() {
   const { playSong } = useMusic();
   const [playlist, setPlaylist] = useState([]);
   const [search, setSearch] = useState("");
+  const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   useEffect(() => {
     try {
@@ -35,8 +37,16 @@ function Playlist() {
       <div className="main">
 
         <div className="topbar">
-          <Link to="/signup" className="signupBtn">Sign up</Link>
-          <Link to="/login" className="loginBtn">Log in</Link>
+          {isLoggedIn && user ? (
+            <div className="profileIcon">
+              {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
+            </div>
+          ) : (
+            <>
+              <Link to="/signup" className="signupBtn">Sign up</Link>
+              <Link to="/login" className="loginBtn">Log in</Link>
+            </>
+          )}
         </div>
         <div className="playlistHeader">
           <div className="playlistCover">❤️</div>
@@ -45,7 +55,7 @@ function Playlist() {
             <p className="playlistType">Public Playlist</p>
             <h1 className="playlistTitle">My Playlist</h1>
             <p className="playlistMeta">
-              Anshika • {playlist.length} songs
+              {user?.name || "User"} • {playlist.length} songs
             </p>
           </div>
         </div>
@@ -107,7 +117,7 @@ function Playlist() {
         ))}
       </div>
     </div>
-    // </div>
+
   );
 }
 

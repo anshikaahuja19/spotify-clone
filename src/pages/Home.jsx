@@ -12,6 +12,8 @@ import LongTracks from "../sections/LongTracks.jsx";
 import styles from "./Home.module.css";
 
 function Home() {
+  const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
 
   // 🔍 Search state
@@ -36,14 +38,14 @@ function Home() {
           title: item.trackName,
           artist: item.artistName,
           image: item.artworkUrl100,
-           audio: item.previewUrl 
+          audio: item.previewUrl
         }));
         setResults(formatted);
       })
       .catch((err) => console.error(err));
   }, [search]);
 
- 
+
   const [activeFilter, setActiveFilter] = useState("All");
 
   const getGreeting = () => {
@@ -58,10 +60,10 @@ function Home() {
       <Sidebar />
 
       <div className={styles.mainView}>
-       
+
         <TopNav search={search} setSearch={setSearch} />
 
-       
+
         {search && (
           <div className={styles.searchDropdown}>
             {results.length === 0 ? (
@@ -98,10 +100,12 @@ function Home() {
           ))}
         </div>
 
-        
-        <h1 className={styles.sectionTitle}>{getGreeting()}</h1>
 
-       
+        <h1 className={styles.sectionTitle}>
+          {user?.name ? `${getGreeting()}, ${user.name}` : getGreeting()}
+        </h1>
+
+
         <div className={styles.quickGrid}>
           <div
             className={styles.quickCard}
@@ -143,13 +147,17 @@ function Home() {
           </div>
         </div>
 
-        
+
         <RecentlyPlayed />
         <MadeForYou />
         <FeaturedCharts />
 
-<LongTracks />
-<div style={{ height: "40px" }} />
+
+
+        <LongTracks />
+
+        <div style={{ height: "40px" }} />
+
       </div>
     </div>
   );

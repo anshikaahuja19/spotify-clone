@@ -22,6 +22,7 @@ const Login = () => {
     savedUser.password === password
   ) {
     localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('currentUser', JSON.stringify(savedUser));
     // window.location.reload();
     navigate('/');
   } else {
