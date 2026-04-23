@@ -50,24 +50,6 @@ function SongCard({ item, onClick }) {
   );
 }
 
-function DiscoverCard({ item, onClick }) {
-  const img = (item.artworkUrl100 || "").replace("100x100bb", "300x300bb");
-  return (
-    <div className="discover-card" onClick={() => onClick && onClick(item)}>
-      <div className="discover-card-img">
-        <img src={img} alt={item.trackName} />
-        <div className="play-btn">
-          <svg viewBox="0 0 24 24" fill="#000" width="18" height="18">
-            <polygon points="5,3 19,12 5,21" />
-          </svg>
-        </div>
-      </div>
-      <p className="music-card-name">{item.trackName}</p>
-      <p className="music-card-sub">{item.artistName}</p>
-    </div>
-  );
-}
-
 function GenreCard({ label, color, term }) {
   const navigate = useNavigate();
   const [img, setImg] = useState(null);
@@ -124,11 +106,11 @@ export default function Music() {
 
           {/* DISCOVER */}
           <h2 className="music-section-title">Discover new music</h2>
-          <div className="discover-row">
+          <div className="music-scroll-row">
             {discover.length === 0
               ? [0, 1, 2].map((i) => <SkeletonCard key={i} />)
               : discover.map((item, i) => (
-                  <DiscoverCard key={i} item={item} onClick={playSong} />
+                  <SongCard key={i} item={item} onClick={playSong} />
                 ))}
           </div>
 
@@ -202,38 +184,6 @@ export default function Music() {
             letter-spacing: -0.3px;
           }
 
-          /* DISCOVER ROW */
-          .discover-row {
-            display: flex;
-            gap: 18px;
-            margin-bottom: 36px;
-            flex-wrap: wrap;
-          }
-          .discover-card {
-            flex: 0 0 200px;
-            background: #181818;
-            border-radius: 8px;
-            padding: 14px;
-            cursor: pointer;
-            transition: background 0.2s;
-          }
-          .discover-card:hover { background: #282828; }
-          .discover-card-img {
-            width: 100%;
-            aspect-ratio: 1;
-            border-radius: 4px;
-            overflow: hidden;
-            background: #222;
-            margin-bottom: 12px;
-            position: relative;
-          }
-          .discover-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-          }
-
           /* SCROLL ROW */
           .music-scroll-row {
             display: flex;
@@ -245,31 +195,37 @@ export default function Music() {
           }
           .music-scroll-row::-webkit-scrollbar { display: none; }
 
-          /* SONG CARD */
+          /* ALL CARDS — fixed identical size */
           .music-card {
             flex: 0 0 160px;
+            width: 160px;
+            box-sizing: border-box;
             background: #181818;
             border-radius: 8px;
-            padding: 14px;
+            padding: 12px;
             cursor: pointer;
             transition: background 0.2s;
           }
           .music-card:hover { background: #282828; }
+
+          /* IMAGE — fixed square, same for every card */
           .music-card-img-wrap {
-            width: 100%;
-            aspect-ratio: 1;
+            width: 136px;
+            height: 136px;
             border-radius: 4px;
             overflow: hidden;
             background: #333;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             position: relative;
+            flex-shrink: 0;
           }
           .music-card-img-wrap img {
-            width: 100%;
-            height: 100%;
+            width: 136px;
+            height: 136px;
             object-fit: cover;
             display: block;
           }
+
           .music-card-name {
             font-size: 13px;
             font-weight: 700;
@@ -304,8 +260,7 @@ export default function Music() {
             transition: opacity 0.2s, transform 0.2s;
             box-shadow: 0 4px 16px rgba(0,0,0,0.5);
           }
-          .music-card-img-wrap:hover .play-btn,
-          .discover-card-img:hover .play-btn { opacity: 1; transform: translateY(0); }
+          .music-card-img-wrap:hover .play-btn { opacity: 1; transform: translateY(0); }
 
           /* GENRE GRID */
           .genre-grid {
@@ -372,7 +327,6 @@ export default function Music() {
           }
           @media (max-width: 600px) {
             .genre-grid { grid-template-columns: repeat(2, 1fr); }
-            .discover-row { flex-wrap: nowrap; overflow-x: auto; }
           }
         `}</style>
       </div>
