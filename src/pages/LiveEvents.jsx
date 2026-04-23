@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 const CONCERT_DATA = [
   {
     name: "Darshan Raval",
