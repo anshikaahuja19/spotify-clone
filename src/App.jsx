@@ -14,7 +14,6 @@ import Sidebar from "./components/Sidebar";
 import TopNav from "./components/TopNav";
 import LiveEvents from "./pages/LiveEvents";
 
-
 function App() {
   const [search, setSearch] = useState("");
   return (

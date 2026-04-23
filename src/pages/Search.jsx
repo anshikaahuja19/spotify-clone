@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useMusic } from "../context/MusicContext";
+import Footer from "../components/Footer";
 
 const browseCategories = [
   { label: "Music", color: "#e91e8c", searchTerm: "top hits", route: "/music" },
@@ -205,7 +206,7 @@ function Search({ search, setSearch }) {
                 <BrowseCard key={cat.label} {...cat} large />
               ))}
             </div>
-
+          
             <h2 className="sectionTitle" style={{ marginTop: "32px" }}>Browse all</h2>
             <div className="browse-grid">
               {allCategories.map((cat) => (
@@ -215,6 +216,7 @@ function Search({ search, setSearch }) {
           </div>
         )}
       </div>
+        <Footer />
 
 
       <style>{`
