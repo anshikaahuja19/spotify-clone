@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
 import { useMusic } from "../context/MusicContext";
 
 const ITUNES = "https://itunes.apple.com/search?media=music&entity=song&";
@@ -113,7 +112,6 @@ export default function Music() {
 
   return (
     <div className="app">
-      <Sidebar />
       <div className="main music-page">
 
         {/* HERO */}

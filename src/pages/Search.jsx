@@ -5,7 +5,7 @@ import { useMusic } from "../context/MusicContext";
 const browseCategories = [
   { label: "Music", color: "#e91e8c", searchTerm: "top hits", route: "/music" },
   { label: "Podcasts", color: "#006450", searchTerm: "podcast music", route: "/podcasts" },
-  { label: "Live Events", color: "#8400e7", searchTerm: "live concert", route: null },
+  { label: "Live Events", color: "#8400e7", searchTerm: "live concert", route: "/live-events" },
 ];
 
 const allCategories = [

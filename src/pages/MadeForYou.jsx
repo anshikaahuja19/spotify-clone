@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
 import { useMusic } from "../context/MusicContext";
 
 /* ─── Static playlist data ─────────────────────────────── */
@@ -269,7 +268,6 @@ export default function MadeForYou() {
 
   return (
     <div className="app">
-      <Sidebar />
 
       <div className="main" style={{ overflowY: "auto" }}>
         {/* Hero */}

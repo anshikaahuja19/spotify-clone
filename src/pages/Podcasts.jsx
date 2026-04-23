@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
 import { useMusic } from "../context/MusicContext";
 
 const ITUNES = "https://itunes.apple.com/search?media=podcast&entity=podcastEpisode&";
@@ -162,7 +161,6 @@ export default function Podcasts() {
 
   return (
     <div className="app">
-      <Sidebar />
       <div className="main podcast-page">
 
         {/* HERO */}
