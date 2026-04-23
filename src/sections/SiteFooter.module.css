@@ -1,0 +1,75 @@
+.footerContainer {
+  padding: 40px 0 80px 0; /* Extra bottom padding so the Player doesn't hide it */
+  margin-top: 40px;
+}
+
+.linksGrid {
+  display: flex;
+  justify-content: flex-start;
+  gap: 100px;
+  margin-bottom: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.column h3 {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.column a {
+  color: #b3b3b3; /* Muted grey from your reference */
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.column a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.socials {
+  display: flex;
+  gap: 16px;
+  margin-left: auto; /* Pushes icons to the right */
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  background-color: #292929;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #292929;
+  margin-bottom: 24px;
+}
+
+.legal {
+  display: flex;
+  justify-content: space-between;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 16px;
+}
+
+.legalLinks a {
+  color: #b3b3b3;
+  text-decoration: none;
+}
