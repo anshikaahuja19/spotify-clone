@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styles from './RecentlyPlayed.module.css';
 
-// List of artists to pick from randomly
-const ARTISTS = ['taylor swift', 'the weeknd', 'drake', 'billie eilish', 'arijit singh'];
+// Random artists list
+const ARTISTS = [
+  "taylor swift",
+  "the weeknd",
+  "drake",
+  "billie eilish",
+  "arijit singh",
+  "armaan malik",
+  "ed sheeran",
+  "lofi beats"
+];
 
 function RecentlyPlayed() {
   const [songs, setSongs] = useState([]);
@@ -10,36 +19,42 @@ function RecentlyPlayed() {
   const [hoveredId, setHoveredId] = useState(null);
 
   useEffect(() => {
-    // Pick a random artist from our list
-    const randomIndex = Math.floor(Math.random() * ARTISTS.length);
-    const randomArtist = ARTISTS[randomIndex];
+    // pick random artist
+    const randomArtist =
+      ARTISTS[Math.floor(Math.random() * ARTISTS.length)];
 
-    // Fetch songs for that artist
-    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(randomArtist)}&media=music&entity=song&limit=10`;
+    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(
+      randomArtist
+    )}&entity=song&limit=10`;
 
     fetch(url)
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
-        setSongs(data.results || []);
+        // optional shuffle (makes it feel more random)
+        const shuffled = (data.results || []).sort(
+          () => 0.5 - Math.random()
+        );
+
+        setSongs(shuffled);
         setLoading(false);
       })
-      .catch((error) => {
-        console.error("Error fetching recently played:", error);
+      .catch((err) => {
+        console.error("Fetch error:", err);
         setLoading(false);
       });
   }, []);
 
-  // Helper function to get better quality images
+  // high quality image
   const getHighResImage = (url) => {
-    if (!url) return '';
-    return url.replace('100x100', '300x300');
+    if (!url) return "";
+    return url.replace("100x100", "300x300");
   };
 
-  // If loading, show a simple text message (easier than complex skeletons)
+  // loading UI
   if (loading) {
     return (
       <div className={styles.section}>
-        <p style={{ color: '#a7a7a7' }}>Loading your history...</p>
+        <p style={{ color: "#a7a7a7" }}>Loading your music...</p>
       </div>
     );
   }
@@ -65,13 +80,12 @@ function RecentlyPlayed() {
                 alt={song.trackName}
                 className={styles.img}
               />
-              
-              {/* Show play button only when hovering over the specific card */}
+
               {hoveredId === song.trackId && (
                 <button className={styles.playBtn}>▶</button>
               )}
             </div>
-            
+
             <p className={styles.name}>{song.trackName}</p>
             <p className={styles.artist}>{song.artistName}</p>
           </div>
