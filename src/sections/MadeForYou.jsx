@@ -13,33 +13,17 @@ const MOODS = [
 function MadeForYou() {
   const [allCovers, setAllCovers] = useState([]);
 
-useEffect(() => {
-  const fetchWithRetry = (retries = 3) => {
-    const itunesUrl = `https://itunes.apple.com/search?term=trending&entity=song&limit=24`;
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(itunesUrl)}`;
-
-    fetch(proxyUrl)
-      .then(res => {
-        if (!res.ok) throw new Error('Proxy Busy'); // Catch 500 or 429 errors
-        return res.json();
-      })
+  useEffect(() => {
+    fetch("https://itunes.apple.com/search?term=trending&entity=song&limit=24")
+      .then(res => res.json())
       .then(data => {
-        const parsed = JSON.parse(data.contents);
-        const images = (parsed.results || []).map(s => s.artworkUrl100.replace('100x100', '200x200'));
+        const images = (data.results || []).map(s =>
+          s.artworkUrl100.replace("100x100", "200x200")
+        );
         setAllCovers(images);
       })
-      .catch(err => {
-        if (retries > 0) {
-          console.log(`Retry attempt: ${4 - retries}`);
-          setTimeout(() => fetchWithRetry(retries - 1), 1500); // Wait 1.5s then try again
-        } else {
-          console.error("All retries failed:", err);
-        }
-      });
-  };
-
-  fetchWithRetry();
-}, []);
+      .catch(err => console.error("Fetch failed:", err));
+  }, []);
 
   return (
     <div className={styles.section}>
@@ -47,12 +31,12 @@ useEffect(() => {
         <h2 className={styles.title}>Made For You</h2>
         <span className={styles.showAll}>Show all</span>
       </div>
+
       <div className={styles.grid}>
         {MOODS.map((m, index) => {
-          // Distribute 4 images to each card from the single fetch result
           const start = index * 4;
           const moodCovers = allCovers.slice(start, start + 4);
-          
+
           return (
             <div key={m.label} className={styles.card}>
               <div className={styles.imageGrid}>
