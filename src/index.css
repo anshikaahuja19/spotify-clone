@@ -405,7 +405,7 @@ body {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border-radius: 4px;
+  border-radius: 4px; 
   border: none;
   background-color: #242424;
   color: white;
@@ -763,3 +763,4 @@ font-weight: 500;
 .searchSection {
   margin-top: 20px;
 }
+
