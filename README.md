@@ -6,7 +6,7 @@ A full-featured Spotify-inspired music web app built with **React** and **Vite**
 
 ##  Live Demo
 
-> Run at-
+> Run at- https://spotify-clone-wap.netlify.app/
 
 ---
 
