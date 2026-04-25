@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMusic } from '../context/MusicContext';
+import styles from "./Player.module.css";
 
 function Player() {
 
@@ -10,18 +11,18 @@ function Player() {
   const isLiked = likedSongs.some(s => s.title === currentSong.title);
 
   return (
-    <div className="player-container">
+    <div className={styles.playerContainer}>
       <audio
         src={currentSong?.audio}
         autoPlay
       />
-      <div className="player-left">
+      <div className={styles.playerLeft}>
         <img
           src={currentSong.image || `https://picsum.photos/seed/${encodeURIComponent(currentSong.title)}/64/64`}
           alt={currentSong.title}
-          className="player-cover"
+          className={styles.playerCover}
         />
-        <div className="player-info">
+        <div className={styles.playerInfo}>
           <h4>{currentSong.title}</h4>
           <p>{currentSong.artist}</p>
         </div>
@@ -30,27 +31,27 @@ function Player() {
         </button>
       </div>
 
-      <div className="player-center">
-        <div className="player-controls">
-          <button className="control-btn" onClick={playPrevious}>⏮</button>
-          <button className="play-btn" onClick={togglePlay}>
+      <div className={styles.playerCenter}>
+        <div className={styles.playerControls}>
+          <button className={styles.controlBtn} onClick={playPrevious}>⏮</button>
+          <button className={styles.playBtn} onClick={togglePlay}>
             {isPlaying ? '⏸' : '▶'}
           </button>
-          <button className="control-btn" onClick={playNext}>⏭</button>
+          <button className={styles.controlBtn} onClick={playNext}>⏭</button>
         </div>
-        <div className="player-progress">
-          <span className="time">0:00</span>
-          <div className="progress-bar">
-            <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+        <div className={styles.playerProgress}>
+          <span className={styles.time}>0:00</span>
+          <div className={styles.progressBar}>
+            <div className={styles.progressFill} style={{ width: `${progress}%` }}></div>
           </div>
           <span className="time">3:00</span>
         </div>
       </div>
 
-      <div className="player-right">
+      <div className={styles.playerRight}>
         <span>🎧</span>
-        <div className="volume-bar">
-          <div className="volume-fill"></div>
+        <div className={styles.volumeBar}>
+          <div className={styles.volumeFill}></div>
         </div>
       </div>
     </div>
