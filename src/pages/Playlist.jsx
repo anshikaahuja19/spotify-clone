@@ -10,6 +10,14 @@ function Playlist() {
   const user = JSON.parse(localStorage.getItem("currentUser") || "null");
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const [results, setResults] = useState([]);
+  const formatTime = (ms) => {
+  if (!ms) return "--:--";
+  const minutes = Math.floor(ms / 60000);
+  const seconds = Math.floor((ms % 60000) / 1000)
+    .toString()
+    .padStart(2, "0");
+  return `${minutes}:${seconds}`;
+};
   useEffect(() => {
   if (search.trim() === "") {
     setResults([]);
@@ -28,6 +36,7 @@ function Playlist() {
         artist: item.artistName,
         image: item.artworkUrl100,
         audio: item.previewUrl,
+        duration: item.trackTimeMillis,
       }));
       setResults(formatted);
     })
@@ -59,19 +68,6 @@ function Playlist() {
     <div className="app">
     
       <div className="main">
-
-        {/* <div className="topbar">
-          {isLoggedIn && user ? (
-            <div className="profileIcon">
-              {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
-            </div>
-          ) : (
-            <>
-              <Link to="/signup" className="signupBtn">Sign up</Link>
-              <Link to="/login" className="loginBtn">Log in</Link>
-            </>
-          )}
-        </div> */}
         <div className="playlistHeader">
           <div className="playlistCover">
             {playlist.length === 0 ? (
@@ -112,7 +108,7 @@ function Playlist() {
         <div className="songRow header">
           <span>#</span>
           <span>Title</span>
-          <span>Artist</span>
+          <span>⏱</span>
           <span></span>
         </div>
 
@@ -140,11 +136,12 @@ function Playlist() {
               />
 
 
-              <div>
-                <p className="title">{song.title}</p>
-                <p className="artist">{song.artist}</p>
-              </div>
+              
+              <p className="title">{song.title}</p>
+                
+            
             </div>
+            <span className="duration">{formatTime(song.duration)}</span>
 
 
 

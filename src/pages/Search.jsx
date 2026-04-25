@@ -122,6 +122,7 @@ function Search({ search, setSearch }) {
           artist: item.artistName,
           image: item.artworkUrl100,
           audio: item.previewUrl,
+          duration: item.trackTimeMillis,
         }));
         setSongs(formatted);
       })
