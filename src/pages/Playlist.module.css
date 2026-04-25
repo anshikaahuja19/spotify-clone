@@ -137,3 +137,6 @@
 .songRow:hover .index {
   opacity: 0;
 }
+.duration {
+  color: #b3b3b3;
+}
