@@ -6,7 +6,7 @@ A full-featured Spotify-inspired music web app built with **React** and **Vite**
 
 ##  Live Demo
 
-> Run locally at `http://localhost:5173`
+> Run at-
 
 ---
 
@@ -28,7 +28,7 @@ A full-featured Spotify-inspired music web app built with **React** and **Vite**
 - Dynamic playlist cover using a 2x2 grid of song artwork
 - Song rows with hover-to-play interaction
 
-### 🔐 Auth Pages (Spotify-style)
+### Auth Pages (Spotify-style)
 - **Sign Up** — Email, name, password fields with social signup via Google, Apple, and Phone
 - **Login** — Email and password login with inline error validation and social login via Google, Apple, Facebook, and Phone
 - Persistent login state using localStorage
@@ -144,8 +144,3 @@ This app uses localStorage for auth with no backend required.
 - Inspired by [Spotify](https://spotify.com)
 - Built as a frontend practice project
 
----
-
-##  License
-
-This project is for educational purposes only and is not affiliated with or endorsed by Spotify.
