@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useMusic } from "../context/MusicContext";
+import styles from "./Playlist.module.css";
 
 function Playlist() {
   const { playSong } = useMusic();
@@ -68,12 +69,12 @@ function Playlist() {
     <div className="app">
     
       <div className="main">
-        <div className="playlistHeader">
-          <div className="playlistCover">
+        <div className={styles.playlistHeader}>
+          <div className={styles.playlistCover}>
             {playlist.length === 0 ? (
-              <div className="emptyCover">🎵</div>
+              <div className={styles.emptyCover}>🎵</div>
             ) : (
-              <div className="coverGrid">
+              <div className={styles.coverGrid}>
                 {playlist.slice(0, 4).map((song, index) => (
                   <img
                     key={index}
@@ -89,15 +90,15 @@ function Playlist() {
           </div>
 
           <div>
-            <p className="playlistType">Public Playlist</p>
-            <h1 className="playlistTitle">My Playlist</h1>
-            <p className="playlistMeta">
+            <p className={styles.playlistType}>Public Playlist</p>
+            <h1 className={styles.playlistTitle}>My Playlist</h1>
+            <p className={styles.playlistMeta}>
               {user?.name || "User"} • {playlist.length} songs
             </p>
           </div>
         </div>
-        <div className="playlistActions">
-          <button className="playBtn">▶</button>
+        <div className={styles.playlistActions}>
+          <button className={styles.playBtn}>▶</button>
           <input
             className="searchInput"
             value={search}
@@ -105,7 +106,7 @@ function Playlist() {
             placeholder="Search in playlist..."
           />
         </div>
-        <div className="songRow header">
+        <div className={styles.songRow}>
           <span>#</span>
           <span>Title</span>
           <span>⏱</span>
@@ -115,33 +116,32 @@ function Playlist() {
         {filtered.map((song, index) => (
           <div
             key={song.id}
-            className="songRow"
+            className={styles.songRow}
             onClick={() => playSong(song)}
           >
-            <span className="index">{index + 1}</span>
-            <button
-              className="rowPlayBtn"
+            <span className={styles.index}>{index + 1}</span>
+           <button className={styles.rowPlayBtn}
               onClick={() => playSong(song)}
             >
               ▶
             </button>
-            <div className="songInfo">
+            <div className={styles.songInfo}>
               <img
                 src={
                   song.image ||
                   `https://picsum.photos/seed/${encodeURIComponent(song.title)}/60/60`
                 }
                 alt={song.title}
-                className="songImage"
+                className={styles.songImage}
               />
 
 
               
-              <p className="title">{song.title}</p>
+              <p className={styles.title}>{song.title}</p>
                 
             
             </div>
-            <span className="duration">{formatTime(song.duration)}</span>
+            <span className={styles.duration}>{formatTime(song.duration)}</span>
 
 
 
